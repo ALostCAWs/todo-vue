@@ -10,7 +10,7 @@ import TodoList from './components/TodoList.vue'
 export default {
   data() {
     return {
-      isDone: this.don
+      isDone: this.done
     }
   }
 }
