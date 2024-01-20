@@ -9,7 +9,8 @@ import TodoList from './components/TodoList.vue'
   <div class="todo-container">
     <div v-if="modalActive">
       <AddItemModal
-        @onToggle="toggleModal"
+      @onCreate="createItem"
+      @onToggle="toggleModal"
       />
     </div>
     <ToggleModalButton
@@ -32,31 +33,28 @@ export default {
     AddItemModal
   },
   methods: {
-    toggleModal: function () {
+    toggleModal() {
       this.modalActive = !this.modalActive;
     },
-    createItem: function () {
+    createItem(item) {
       console.log('create');
-      console.log(this.newItem);
-      /*const newItem = {
+      console.log(this.list);
+      console.log(item);
+      const newItem = {
         text: item.text || '',
         date: item.date || undefined,
         selected: false
       }
-      this.list.push(newItem);*/
+      this.list.push(newItem);
+      console.log(this.list);
 
-      // this.toggleModal();
+      this.toggleModal();
     },
-    deleteSelectedItems: function () {
-      this.list = this.list.filter((item) => { return !item.selected });
-    },
-    toggleSelectItem: function ({ checked, item }) {
+    toggleSelectItem({ checked, item }) {
       item.selected = checked;
     },
-    myMethod: function () {
-      console.log('My Method');
-      this.myBool = !this.myBool;
-      console.log(this.myBool);
+    deleteSelectedItems() {
+      this.list = this.list.filter((item) => { return !item.selected });
     }
   },
   data() {
@@ -68,14 +66,7 @@ export default {
         { text: "item 3", date: undefined, selected: false },
         { text: "item 4", date: undefined, selected: false },
         { text: "item 5", date: undefined, selected: false }
-      ],
-      newItem: {
-        text: '1',
-        date: '2',
-        selected: false
-      },
-      text: '1',
-      myBool: false
+      ]
     };
   }
 }

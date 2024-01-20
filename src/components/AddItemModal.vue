@@ -1,19 +1,18 @@
 <script setup>
 import LabelTextbox from './LabelTextbox.vue'
-import ToggleModalButton from './ToggleModalButton.vue'
+// import ToggleModalButton from './ToggleModalButton.vue'
 </script>
 
 <template>
   <div class="modal-mask" @click.self="toggle">
     <div class="add-modal modal">
       <div class="modal-inputs">
-        <LabelTextbox
-          :label="`Item:`"
-        />
+        <div class="label-textbox-container">
+          <p>Item:</p>
+          <input type="text" v-model="text">
+        </div>
       </div>
-      <ToggleModalButton
-        v-on="$listeners"
-      />
+      <button type="button" class="toggle-modal" @click="create">Add</button>
     </div>
   </div>
 </template>
@@ -21,8 +20,16 @@ import ToggleModalButton from './ToggleModalButton.vue'
 <script>
 export default {
   methods: {
+    create() {
+      this.$emit('onCreate', { text: this.text });
+    },
     toggle() {
       this.$emit('onToggle');
+    }
+  },
+  data() {
+    return {
+      text: ''
     }
   }
 }
