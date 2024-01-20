@@ -39,7 +39,7 @@ export default {
     createItem(item) {
       const newItem = {
         text: item.text || '',
-        date: item.date || undefined,
+        date: item.date || '',
         selected: false
       }
       this.list.push(newItem);
