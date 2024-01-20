@@ -37,16 +37,12 @@ export default {
       this.modalActive = !this.modalActive;
     },
     createItem(item) {
-      console.log('create');
-      console.log(this.list);
-      console.log(item);
       const newItem = {
         text: item.text || '',
         date: item.date || undefined,
         selected: false
       }
       this.list.push(newItem);
-      console.log(this.list);
 
       this.toggleModal();
     },
