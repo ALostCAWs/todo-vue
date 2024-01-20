@@ -9,11 +9,6 @@
 export default {
   props: {
     label: { required: true }
-  },
-  data() {
-    return {
-      isDone: this.done
-    }
   }
 }
 </script>

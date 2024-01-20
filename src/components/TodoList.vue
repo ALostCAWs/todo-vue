@@ -9,7 +9,12 @@ import ListItem from './ListItem.vue'
       :key="index"
       :index="index"
       :item="item"
+      @clicked="toggleSelectItem"
     />
+    <input
+      type="checkbox"
+      @click="onChk"
+    >
   </div>
 </template>
 
@@ -17,6 +22,12 @@ import ListItem from './ListItem.vue'
 export default {
   props: {
     list: { required: true },
+    toggleSelectItem: { required: true }
+  },
+  methods: {
+    onChk(e) {
+      this.$emit('clicked', true);
+    }
   },
   data() {
     return {

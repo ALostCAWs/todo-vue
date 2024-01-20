@@ -1,6 +1,10 @@
 <template>
   <div class="todo-item">
-    <input type="checkbox" :id="`item-${index + 1}`" v-model="item.selected">
+    <input
+      type="checkbox"
+      :id="`item-${index + 1}`"
+      @click="onChk"
+    >
     <p>{{ item.text }}</p>
   </div>
 </template>
@@ -9,11 +13,11 @@
 export default {
   props: {
     index: { required: true },
-    item: { required: true },
+    item: { required: true }
   },
-  data() {
-    return {
-      isDone: this.done
+  methods: {
+    onChk(e) {
+      this.$emit('clicked', true);
     }
   }
 }

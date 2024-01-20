@@ -4,18 +4,15 @@ import ToggleModalButton from './ToggleModalButton.vue'
 </script>
 
 <template>
-  <div class="modal-mask" @click.self="toggleModal">
+  <div class="modal-mask" @click.self="toggle">
     <div class="add-modal modal">
       <div class="modal-inputs">
         <LabelTextbox
           :label="`Item:`"
         />
-        <LabelTextbox
-          :label="`Date:`"
-        />
       </div>
       <ToggleModalButton
-        :toggleModal="toggleModal"
+        @onToggle="toggle"
       />
     </div>
   </div>
@@ -24,12 +21,11 @@ import ToggleModalButton from './ToggleModalButton.vue'
 <script>
 export default {
   props: {
-    modalActive: { required: true },
     toggleModal: { required: true }
   },
-  data() {
-    return {
-      isDone: this.done
+  methods: {
+    toggle() {
+      this.$emit('onToggle');
     }
   }
 }
