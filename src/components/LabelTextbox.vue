@@ -1,19 +1,19 @@
 <template>
   <div class="label-textbox-container">
-    <p>Label</p>
+    <p>{{label}}</p>
     <input type="text">
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    label: { required: true }
+  },
   data() {
     return {
       isDone: this.done
     }
-  },
-  props: {
-    label: { required: true }
   }
 }
 </script>
@@ -23,6 +23,13 @@ export default {
   display: flex;
   flex-direction: row;
 
-  border: thin solid black;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-top: 3%;
+  margin-left: 1%;
+
+  width: 35%;
+  height: 15%;
 }
 </style>

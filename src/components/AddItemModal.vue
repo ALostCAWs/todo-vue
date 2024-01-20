@@ -1,10 +1,19 @@
 <script setup>
-import ToggleModalButton from './ToggleModalButton.vue';
+import LabelTextbox from './LabelTextbox.vue'
+import ToggleModalButton from './ToggleModalButton.vue'
 </script>
 
 <template>
-  <div class ="modal-mask">
+  <div class="modal-mask" @click.self="toggleModal">
     <div class="add-modal modal">
+      <div class="modal-inputs">
+        <LabelTextbox
+          :label="`Item:`"
+        />
+        <LabelTextbox
+          :label="`Date:`"
+        />
+      </div>
       <ToggleModalButton
         :toggleModal="toggleModal"
       />
@@ -45,6 +54,7 @@ export default {
 }
 .modal {
   display: flex;
+  flex-direction: column;
   z-index: 9000;
 
   width: 50%;
@@ -54,14 +64,18 @@ export default {
 
   background-color: #fff;
 }
+.modal-inputs {
+  width: 100%;
+  height: 70%;
+}
 </style>
 
 <style scoped>
 .toggle-modal {
   align-self: flex-end;
 
-  height: 10%;
   width: 5.25%;
+  height: 10%;
 
   margin: 20px auto;
 }

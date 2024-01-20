@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from 'vue'
 import AddItemModal from './components/AddItemModal.vue'
 import ToggleModalButton from './components/ToggleModalButton.vue'
+import DeleteItemButton from './components/DeleteItemButton.vue'
 import TodoList from './components/TodoList.vue'
 </script>
 
@@ -15,6 +15,9 @@ import TodoList from './components/TodoList.vue'
     </div>
     <ToggleModalButton
       :toggleModal="toggleModal"
+    />
+    <DeleteItemButton
+      :deleteSelectedItems="deleteSelectedItems"
     />
     <TodoList
       :list="list"
@@ -31,17 +34,23 @@ export default {
   methods: {
     toggleModal: function () {
       this.modalActive = !this.modalActive;
+    },
+    createItem: function (item) {
+      this.list.push(item);
+    },
+    deleteSelectedItems: function () {
+      this.list = this.list.filter((item) => { return !item.selected });
     }
   },
   data() {
     return {
       modalActive: false,
       list: [
-        { text: "item 1", date: undefined },
-        { text: "item 2", date: undefined },
-        { text: "item 3", date: undefined },
-        { text: "item 4", date: undefined },
-        { text: "item 5", date: undefined }
+        { text: "item 1", date: undefined, selected: false },
+        { text: "item 2", date: undefined, selected: false },
+        { text: "item 3", date: undefined, selected: false },
+        { text: "item 4", date: undefined, selected: false },
+        { text: "item 5", date: undefined, selected: false }
       ]
     };
   }

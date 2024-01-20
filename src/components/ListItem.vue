@@ -1,6 +1,6 @@
 <template>
   <div class="todo-item">
-    <input type="checkbox" :id="`item-${index + 1}`">
+    <input type="checkbox" :id="`item-${index + 1}`" v-model="item.selected">
     <p>{{ item.text }}</p>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   props: {
     index: { required: true },
-    item: { required: true }
+    item: { required: true },
   },
   data() {
     return {

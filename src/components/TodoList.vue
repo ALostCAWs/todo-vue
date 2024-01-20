@@ -7,8 +7,8 @@ import ListItem from './ListItem.vue'
     <ListItem
       v-for="(item, index) in list"
       :key="index"
-      :index = index
-      :item = item
+      :index="index"
+      :item="item"
     />
   </div>
 </template>
@@ -16,7 +16,7 @@ import ListItem from './ListItem.vue'
 <script>
 export default {
   props: {
-    list: { required: true }
+    list: { required: true },
   },
   data() {
     return {
