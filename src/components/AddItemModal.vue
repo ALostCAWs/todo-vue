@@ -7,13 +7,17 @@ import ToggleModalButton from './ToggleModalButton.vue'
   <div class="modal-mask" @click.self="toggle">
     <div class="add-modal modal">
       <div class="modal-inputs">
-        <div class="label-textbox-container">
-          <p>Item:</p>
-          <input type="text" v-model="text">
-        </div>
+        <LabelTextbox
+          :label="`Item:`"
+          @onUpdate="setText"
+        />
+        <LabelTextbox
+          :label="`Date:`"
+          @onUpdate="setDate"
+        />
       </div>
       <ToggleModalButton
-        v-on:onToggle="create"
+        @onToggle="create"
       />
     </div>
   </div>
@@ -22,8 +26,19 @@ import ToggleModalButton from './ToggleModalButton.vue'
 <script>
 export default {
   methods: {
+    setText(text) {
+      this.text = text;
+    },
+    setDate(date) {
+      this.date = date;
+    },
+    refreshData() {
+      this.setText('');
+      this.setDate('');
+    },
     create() {
       this.$emit('onCreate', { text: this.text });
+      this.refreshData();
     },
     toggle() {
       this.$emit('onToggle');
@@ -31,7 +46,8 @@ export default {
   },
   data() {
     return {
-      text: ''
+      text: '',
+      date: ''
     }
   }
 }

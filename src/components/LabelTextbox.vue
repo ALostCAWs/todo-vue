@@ -1,7 +1,9 @@
 <template>
   <div class="label-textbox-container">
     <p>{{label}}</p>
-    <input type="text">
+    <input type="text"
+      @change="updateItem"
+    >
   </div>
 </template>
 
@@ -9,6 +11,11 @@
 export default {
   props: {
     label: { required: true }
+  },
+  methods: {
+    updateItem(e) {
+      this.$emit('onUpdate', e.target.value);
+    }
   }
 }
 </script>
