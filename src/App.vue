@@ -20,7 +20,7 @@ import TodoList from './components/TodoList.vue'
     />
     <TodoList
       :list="list"
-      :toggleSelectItem="toggleSelectItem"
+      @onSelect="toggleSelectItem"
     />
   </div>
 </template>
@@ -50,8 +50,8 @@ export default {
     deleteSelectedItems: function () {
       this.list = this.list.filter((item) => { return !item.selected });
     },
-    toggleSelectItem: function (index) {
-      console.log('Selected');
+    toggleSelectItem: function ({ checked, item }) {
+      item.selected = checked;
     },
     myMethod: function () {
       console.log('My Method');

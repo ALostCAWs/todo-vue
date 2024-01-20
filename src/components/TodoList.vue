@@ -9,7 +9,7 @@ import ListItem from './ListItem.vue'
       :key="index"
       :index="index"
       :item="item"
-      @clicked="toggleSelectItem"
+      v-on="$listeners"
     />
   </div>
 </template>
@@ -17,13 +17,7 @@ import ListItem from './ListItem.vue'
 <script>
 export default {
   props: {
-    list: { required: true },
-    toggleSelectItem: { required: true }
-  },
-  methods: {
-    onChk(e) {
-      this.$emit('clicked', true);
-    }
+    list: { required: true }
   },
   data() {
     return {

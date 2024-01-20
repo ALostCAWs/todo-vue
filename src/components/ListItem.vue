@@ -3,7 +3,8 @@
     <input
       type="checkbox"
       :id="`item-${index + 1}`"
-      @click="onChk"
+      v-model="item.selected"
+      @click="select"
     >
     <p>{{ item.text }}</p>
   </div>
@@ -16,8 +17,8 @@ export default {
     item: { required: true }
   },
   methods: {
-    onChk(e) {
-      this.$emit('clicked', true);
+    select(e) {
+      this.$emit('onSelect', { checked: e.target.checked, item: this.item });
     }
   }
 }
