@@ -1,6 +1,6 @@
 <script setup>
 import LabelTextbox from './LabelTextbox.vue'
-// import ToggleModalButton from './ToggleModalButton.vue'
+import ToggleModalButton from './ToggleModalButton.vue'
 </script>
 
 <template>
@@ -12,7 +12,9 @@ import LabelTextbox from './LabelTextbox.vue'
           <input type="text" v-model="text">
         </div>
       </div>
-      <button type="button" class="toggle-modal" @click="create">Add</button>
+      <ToggleModalButton
+        v-on:onToggle="create"
+      />
     </div>
   </div>
 </template>
