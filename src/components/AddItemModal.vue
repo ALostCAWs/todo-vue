@@ -87,7 +87,6 @@ export default {
   height: 70%;
 }
 </style>
-
 <style scoped>
 .toggle-modal {
   align-self: flex-end;

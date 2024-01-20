@@ -46,6 +46,9 @@ export default {
 
       this.toggleModal();
     },
+    updateItem() {
+      console.log('update');
+    },
     toggleSelectItem({ checked, item }) {
       item.selected = checked;
     },
