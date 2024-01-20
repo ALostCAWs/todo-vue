@@ -24,9 +24,13 @@ export default {
   display: flex;
   flex-direction: row;
 
-  margin: 5px;
+  margin: 5px 0;
   padding: 5px;
 
   border: thin solid black;
+}
+
+.todo-item:hover {
+  background-color: #eee;
 }
 </style>

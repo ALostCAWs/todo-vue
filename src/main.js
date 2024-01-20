@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import TodoList from './components/TodoList.vue';
 
 new Vue({
-  render: (h) => h(TodoList),
+  render: (h) => h(App),
 }).$mount('#app');
