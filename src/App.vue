@@ -9,7 +9,6 @@ import TodoList from './components/TodoList.vue'
   <div class="todo-container">
     <div v-if="modalActive">
       <AddItemModal
-      :toggleModal="toggleModal"
         @onToggle="toggleModal"
       />
     </div>
@@ -51,7 +50,7 @@ export default {
     deleteSelectedItems: function () {
       this.list = this.list.filter((item) => { return !item.selected });
     },
-    toggleSelectItem: function () {
+    toggleSelectItem: function (index) {
       console.log('Selected');
     },
     myMethod: function () {

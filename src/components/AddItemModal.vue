@@ -12,7 +12,7 @@ import ToggleModalButton from './ToggleModalButton.vue'
         />
       </div>
       <ToggleModalButton
-        @onToggle="toggle"
+        v-on="$listeners"
       />
     </div>
   </div>
@@ -20,9 +20,6 @@ import ToggleModalButton from './ToggleModalButton.vue'
 
 <script>
 export default {
-  props: {
-    toggleModal: { required: true }
-  },
   methods: {
     toggle() {
       this.$emit('onToggle');

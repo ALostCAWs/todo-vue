@@ -11,10 +11,6 @@ import ListItem from './ListItem.vue'
       :item="item"
       @clicked="toggleSelectItem"
     />
-    <input
-      type="checkbox"
-      @click="onChk"
-    >
   </div>
 </template>
 
