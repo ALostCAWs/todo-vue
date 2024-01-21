@@ -37,7 +37,7 @@ export default {
       this.setDate('');
     },
     create() {
-      this.$emit('onCreate', { text: this.text });
+      this.$emit('onCreate', { text: this.text, date: this.date });
       this.refreshData();
     },
     toggle() {

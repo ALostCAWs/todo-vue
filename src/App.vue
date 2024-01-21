@@ -22,6 +22,7 @@ import TodoList from './components/TodoList.vue'
     <TodoList
       :list="list"
       @onSelect="toggleSelectItem"
+      @onUpdate="updateItem"
     />
   </div>
 </template>
@@ -46,8 +47,8 @@ export default {
 
       this.toggleModal();
     },
-    updateItem() {
-      console.log('update');
+    updateItem({ index, text }) {
+      this.list[index].text = text;
     },
     toggleSelectItem({ checked, item }) {
       item.selected = checked;

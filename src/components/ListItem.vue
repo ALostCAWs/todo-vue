@@ -1,16 +1,17 @@
 <template>
-  <div class="todo-item" v-if="editActive">
+  <div v-if="editActive" :id="`item-${index + 1}`" class="todo-item">
     <input
       type="text"
-      :id="`item-${index + 1}`"
+      :id="`update-item-${index + 1}`"
+      v-model="updatedItem"
     >
-    <button type="button" class="update" @click="toggleEdit">Update</button>
+    <button type="button" class="update" @click="update">Update</button>
     <button type="button" class="edit" @click="toggleEdit">Cancel</button>
   </div>
-  <div class="todo-item" v-else>
+  <div v-else :id="`item-${index + 1}`" class="todo-item">
     <input
       type="checkbox"
-      :id="`item-${index + 1}`"
+      :id="`select-item-${index + 1}`"
       v-model="item.selected"
       @click="select"
     >
@@ -31,11 +32,19 @@ export default {
     },
     toggleEdit() {
       this.editActive = !this.editActive;
+    },
+    setUpdatedText(text) {
+      this.updatedItem = text
+    },
+    update() {
+      this.$emit('onUpdate', { index: this.index, text: this.updatedItem });
+      this.toggleEdit();
     }
   },
   data() {
     return {
-      editActive: false
+      editActive: false,
+      updatedItem: this.item.text
     }
   }
 }
