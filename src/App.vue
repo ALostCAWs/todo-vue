@@ -7,18 +7,21 @@ import TodoList from './components/TodoList.vue'
 
 <template>
   <div class="todo-container">
-    <div v-if="modalActive">
+    <div v-show="modalActive">
       <AddItemModal
       @onCreate="createItem"
       @onToggle="toggleModal"
       />
     </div>
-    <ToggleModalButton
-      @onToggle="toggleModal"
-    />
-    <DeleteItemButton
-      :deleteSelectedItems="deleteSelectedItems"
-    />
+    <div class="todo-btn">
+      <ToggleModalButton
+        @onToggle="toggleModal"
+      />
+      <DeleteItemButton
+        :deleteSelectedItems="deleteSelectedItems"
+        v-show="itemSelected"
+      />
+    </div>
     <TodoList
       :list="list"
       @onSelect="toggleSelectItem"
@@ -31,7 +34,10 @@ import TodoList from './components/TodoList.vue'
 export default {
   name: 'App',
   components: {
-    AddItemModal
+    AddItemModal,
+    ToggleModalButton,
+    DeleteItemButton,
+    TodoList
   },
   methods: {
     toggleModal() {
@@ -52,14 +58,21 @@ export default {
     },
     toggleSelectItem({ checked, item }) {
       item.selected = checked;
+      if (checked) {
+        this.itemSelected = true;
+      } else {
+        this.itemSelected = this.list.filter((item) => { return item.selected }).length > 0;
+      }
     },
     deleteSelectedItems() {
       this.list = this.list.filter((item) => { return !item.selected });
+      this.itemSelected = false;
     }
   },
   data() {
     return {
       modalActive: false,
+      itemSelected: false,
       list: [
         { text: "item 1", date: undefined, selected: false },
         { text: "item 2", date: undefined, selected: false },
@@ -76,5 +89,11 @@ export default {
 .todo-container {
   width: 35%;
   margin: auto;
+  margin-top: 2em;
+}
+.todo-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>

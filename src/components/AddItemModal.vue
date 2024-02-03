@@ -53,46 +53,9 @@ export default {
 }
 </script>
 
-<style>
-.modal-mask {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  z-index: 8000;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background-color: #dddddd5a;
-}
-.modal {
-  display: flex;
-  flex-direction: column;
-  z-index: 9000;
-
-  width: 50%;
-  height: 50%;
-
-  margin: auto;
-
-  background-color: #fff;
-}
-.modal-inputs {
-  width: 100%;
-  height: 70%;
-}
-</style>
 <style scoped>
 .toggle-modal {
   align-self: flex-end;
-
-  width: 5.25%;
-  height: 10%;
 
   margin: 20px auto;
 }

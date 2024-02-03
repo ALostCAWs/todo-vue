@@ -14,3 +14,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.delete-item {
+  margin-left: auto;
+}
+</style>

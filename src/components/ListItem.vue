@@ -1,5 +1,5 @@
 <template>
-  <div v-if="editActive" :id="`item-${index + 1}`" class="todo-item">
+  <div v-if="editActive" :id="`item-${index + 1}`" class="todo-item selected">
     <input
       type="text"
       :id="`update-item-${index + 1}`"
@@ -8,7 +8,7 @@
     <button type="button" class="update" @click="update">Update</button>
     <button type="button" class="edit" @click="toggleEdit">Cancel</button>
   </div>
-  <div v-else :id="`item-${index + 1}`" class="todo-item">
+  <div v-else :id="`item-${index + 1}`" class="todo-item" :class="{ selected: item.selected }">
     <input
       type="checkbox"
       :id="`select-item-${index + 1}`"
@@ -51,23 +51,6 @@ export default {
 </script>
 
 <style scoped>
-.todo-item {
-  display: flex;
-  flex-direction: row;
-
-  width: 100%;
-  height: 100%;
-
-  margin: 5px 0;
-  padding: 15px;
-
-  border: thin solid black;
-}
-
-.todo-item:hover {
-  background-color: #eee;
-}
-
 p {
   margin: auto 0;
   margin-left: 1%;
