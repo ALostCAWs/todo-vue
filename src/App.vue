@@ -67,6 +67,10 @@ export default {
     deleteSelectedItems() {
       this.list = this.list.filter((item) => { return !item.selected });
       this.itemSelected = false;
+    },
+    saveList() {
+      const parsedList = JSON.stringify(this.list);
+      localStorage.setItem('todo_vue_list', parsedList);
     }
   },
   data() {
@@ -81,6 +85,20 @@ export default {
         { text: "item 5", date: undefined, selected: false }
       ]
     };
+  },
+  mounted() {
+    if (localStorage.getItem('todo_vue_list')) {
+      try {
+        this.list = JSON.parse(localStorage.getItem('todo_vue_list'));
+      } catch (e) {
+        localStorage.removeItem('todo_vue_list');
+      }
+    }
+  },
+  watch: {
+    list: function (updatedList, previousList) {
+      this.saveList();
+    }
   }
 }
 </script>
