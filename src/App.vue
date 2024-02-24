@@ -13,20 +13,22 @@ import TodoList from './components/TodoList.vue'
       @onToggle="toggleModal"
       />
     </div>
-    <div class="todo-btn">
-      <ToggleModalButton
-        @onToggle="toggleModal"
-      />
-      <DeleteItemButton
-        :deleteSelectedItems="deleteSelectedItems"
-        v-show="itemSelected"
+    <div :inert="modalActive">
+      <div class="todo-btn">
+        <ToggleModalButton
+          @onToggle="toggleModal"
+        />
+        <DeleteItemButton
+          :deleteSelectedItems="deleteSelectedItems"
+          v-show="itemSelected"
+        />
+      </div>
+      <TodoList
+        :list="list"
+        @onSelect="toggleSelectItem"
+        @onUpdate="updateItem"
       />
     </div>
-    <TodoList
-      :list="list"
-      @onSelect="toggleSelectItem"
-      @onUpdate="updateItem"
-    />
   </div>
 </template>
 
@@ -38,6 +40,14 @@ export default {
     ToggleModalButton,
     DeleteItemButton,
     TodoList
+  },
+  computed: {
+    isInert() {
+      if (this.modalActive) {
+        return 'inert';
+      }
+      return '';
+    }
   },
   methods: {
     toggleModal() {
